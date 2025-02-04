@@ -1,3 +1,4 @@
+import java.lang.Math;
 /**
  * This class provides various static methods that calculate various quantities
  * related to dates, including the day of week a date fall on.
@@ -11,7 +12,23 @@ public class Date {
      * @return true if the year is a leap year; otherwise false.
      */
     public static boolean isLeapYear(int year){
-        //TODO: replace this line and the next with your code.
+        double yearDividedBy4 = (double)(year/4.0);
+        boolean isYearDivisibleBy4 = (yearDividedBy4 % 1) == 0.0;
+
+        double yearDividedBy100 = (double)(year/100.0);
+        boolean isYearDivisibleBy100 = (yearDividedBy100 % 1) == 0.0;
+
+        double yearDividedBy400 = (double)(year/400.0);
+        boolean isYearDivisibleBy400 = (yearDividedBy400 % 1) == 0.0;
+
+        if (isYearDivisibleBy4 == true){
+            if (isYearDivisibleBy400 == true){
+                return true;
+            }if (isYearDivisibleBy100 == true){
+                return false;
+            }
+            return true;
+        }
         return false;
     }
 
@@ -21,7 +38,23 @@ public class Date {
      * @return the name of the day given by dayValue
      */
     public static String getNameOfDay(int dayValue){
-        //TODO: replace this line with your code.
+        dayValue = (dayValue%7+7)%7;
+
+        if (dayValue == 0){
+            return "Sunday";
+        }if (dayValue == 1){
+            return "Monday";
+        }if (dayValue == 2){
+            return "Tuesday";
+        }if (dayValue == 3){
+            return "Wednesday";
+        }if (dayValue == 4){
+            return "Thursday";
+        }if (dayValue == 5){
+            return "Friday";
+        }if (dayValue == 6){
+            return "Saturday";
+        }
         return null;
     }
 
@@ -35,8 +68,34 @@ public class Date {
      * @return the numeric value of the month.
      */
     public static int getMonthNumber(String name){
-        //TODO: replace this line and next with your code.
-        return -1;
+
+        if (name == "January"){
+            return 1;
+        }if (name == "February"){
+            return 2;
+        }if (name == "March"){
+            return 3;
+        }if (name == "April"){
+            return 4;
+        }if (name == "May"){
+            return 5;
+        }if (name == "June"){
+            return 6;
+        }if (name == "July"){
+            return 7;
+        }if (name == "August"){
+            return 8;
+        }if (name == "September"){
+            return 9;
+        }if (name == "October"){
+            return 10;
+        }if (name == "November"){
+            return 11;
+        }if (name == "December"){
+            return 12;
+        }else{
+            return -1;
+        }
     }
 
     /**
@@ -49,8 +108,45 @@ public class Date {
      * @return the name of the month given the numeric value provided by month
      */
     public static String getMonthName(int month){
-        //TODO: replace this line and next with your code.
-        return null;
+        switch (month){
+        case 1:{
+            return "January";
+        }
+        case 2:{
+            return "February";
+        }
+        case 3:{
+            return "March";
+        }
+        case 4:{
+            return "April";
+        }
+        case 5:{
+            return "May";
+        }
+        case 6:{
+            return "June";
+        }
+        case 7:{
+            return "July";
+        }
+        case 8: {
+            return "August";
+        }
+        case 9:{
+            return "September";
+        }
+        case 10:{
+            return "October";
+        }
+        case 11:{
+            return "November";
+        }
+        case 12:{
+            return "December";
+        }
+        }
+        return "";
     }
 
     /**
@@ -60,8 +156,36 @@ public class Date {
      * @return the number of days in the month given by the parameter month
      */
     public static int getDaysInMonth(int month, int year){
-        //TODO: replace this line and next with your code.
-        return -1;
+        if (getMonthName(month) == "February"){
+            if (isLeapYear(year) == true){
+                return 29;
+            }else{
+                return 28;
+            }}
+        if (getMonthName(month) == "January"){
+            return 31;
+        }if (getMonthName(month) == "March"){
+            return 31;
+        }if (getMonthName(month) == "April"){
+            return 30;
+        }if (getMonthName(month) == "May"){
+            return 31;
+        }if (getMonthName(month) == "June"){
+            return 30;
+        }if (getMonthName(month) == "July"){
+            return 31;
+        }if (getMonthName(month) == "August"){
+            return 31;
+        }if (getMonthName(month) == "September"){
+            return 30;
+        }if (getMonthName(month) == "October"){
+            return 31;
+        }if (getMonthName(month) == "November"){
+            return 30;
+        }if (getMonthName(month) == "December"){
+            return 31;
+        }
+    return -1;
     }
 
     /**
@@ -71,7 +195,37 @@ public class Date {
      * @return the number of days in the month
      */
     public static int getDaysInMonth(String month, int year){
-        //TODO: replace this line and next with your code.
+        if ("February".equalsIgnoreCase(month)){
+            if (isLeapYear(year)){
+                return 29;
+            }else{
+                return 28;
+            }
+        }
+        if (month == "January"){
+            return 31;
+        }if (month == "March"){
+            return 31;
+        }if (month == "April"){
+            return 30;
+        }if (month == "May"){
+            return 31;
+        }if (month == "June"){
+            return 30;
+        }if (month == "July"){
+            return 31;
+        }if (month == "August"){
+            return 31;
+        }if (month == "September"){
+            return 30;
+        }if (month == "October"){
+            return 31;
+        }if (month == "November"){
+            return 30;
+        }if (month == "December"){
+            return 31;
+        }
+
         return -1;
     }
 
@@ -82,7 +236,59 @@ public class Date {
      * @return the offset in days for the month relative to January
      */
     public static int getMonthOffset(int month, int year){
-        //TODO: replace this line and next with your code.
+        if (isLeapYear(year)){
+            if (getMonthName(month) == "January"){
+                return 0;
+            }if (getMonthName(month) == "February"){
+                return 3;
+            }if (getMonthName(month) == "March"){
+                return 4;
+            }if (getMonthName(month) == "April"){
+                return 0;
+            }if (getMonthName(month) == "May"){
+                return 2;
+            }if (getMonthName(month) == "June"){
+                return 5;
+            }if (getMonthName(month) == "July"){
+                return 0;
+            }if (getMonthName(month) == "August"){
+                return 3;
+            }if (getMonthName(month) == "September"){
+                return 6;
+            }if (getMonthName(month) == "October"){
+                return 1;
+            }if (getMonthName(month) == "November"){
+                return 4;
+            }if (getMonthName(month) == "December"){
+                return 6;
+            }
+        }else{
+            if (getMonthName(month) == "January"){
+                return 0;
+            }if (getMonthName(month) == "February"){
+                return 3;
+            }if (getMonthName(month) == "March"){
+                return 3;
+            }if (getMonthName(month) == "April"){
+                return 6;
+            }if (getMonthName(month) == "May"){
+                return 1;
+            }if (getMonthName(month) == "June"){
+                return 4;
+            }if (getMonthName(month) == "July"){
+                return 6;
+            }if (getMonthName(month) == "August"){
+                return 2;
+            }if (getMonthName(month) == "September"){
+                return 5;
+            }if (getMonthName(month) == "October"){
+                return 0;
+            }if (getMonthName(month) == "November"){
+                return 3;
+            }if (getMonthName(month) == "December"){
+                return 5;
+            }
+        }
         return -1;
     }
 
@@ -94,8 +300,14 @@ public class Date {
      * @return the day of the week that the date falls on
      */
     public static int dayOfWeek(int month, int dayOfMonth, int year){
-        //TODO: replace this line and next with your code.
-        return -1;
+        double dayOfTheWeekOnJanFirst = (year + Math.floor( (year-1)/4 ) - Math.floor( (year-1)/100 ) + Math.floor( (year-1)/400 ) )%7;
+        double offSet = getMonthOffset(month, year);
+        if (offSet == -1 || month == 2 && dayOfMonth > 29){
+            return -1;
+        }else{
+            double dayOfTheWeekOnFirstOfMonth = dayOfTheWeekOnJanFirst + offSet;
+            return (int)((dayOfTheWeekOnFirstOfMonth+dayOfMonth-1)%7);
+        }
     }
 
     /**
@@ -106,7 +318,19 @@ public class Date {
      * @return the day of the week that the date falls on
      */
     public static int dayOfWeek(String month, int dayOfMonth, int year){
-        //TODO: replace this line and next with your code.
-        return -1;
+        int monthNum = getMonthNumber(month);
+        return dayOfWeek(monthNum, dayOfMonth, year);
+
+
+        /*double dayOfTheWeekOnJanFirst = (year + Math.floor( (year-1)/4 ) - Math.floor( (year-1)/100 ) + Math.floor( (year-1)/400 ) )%7;
+        double offSet = getMonthOffset(getMonthNumber(month), year);
+        if (offSet == -1 || month == "February" && dayOfMonth > 29){
+            return -1;
+        }else{
+            double dayOfTheWeekOnFirstOfMonth = dayOfTheWeekOnJanFirst + offSet;
+            return (int)((dayOfTheWeekOnFirstOfMonth+dayOfMonth-1)%7);
+        }*/
+
+
     }
 }
