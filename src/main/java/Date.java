@@ -69,29 +69,29 @@ public class Date {
      */
     public static int getMonthNumber(String name){
 
-        if (name == "January"){
+        if ("january".equalsIgnoreCase(name)){
             return 1;
-        }if (name == "February"){
+        }if ("february".equalsIgnoreCase(name)){
             return 2;
-        }if (name == "March"){
+        }if ("march".equalsIgnoreCase(name)){
             return 3;
-        }if (name == "April"){
+        }if ("april".equalsIgnoreCase(name)){
             return 4;
-        }if (name == "May"){
+        }if ("may".equalsIgnoreCase(name)){
             return 5;
-        }if (name == "June"){
+        }if ("june".equalsIgnoreCase(name)){
             return 6;
-        }if (name == "July"){
+        }if ("july".equalsIgnoreCase(name)){
             return 7;
-        }if (name == "August"){
+        }if ("august".equalsIgnoreCase(name)){
             return 8;
-        }if (name == "September"){
+        }if ("september".equalsIgnoreCase(name)){
             return 9;
-        }if (name == "October"){
+        }if ("october".equalsIgnoreCase(name)){
             return 10;
-        }if (name == "November"){
+        }if ("november".equalsIgnoreCase(name)){
             return 11;
-        }if (name == "December"){
+        }if ("december".equalsIgnoreCase(name)){
             return 12;
         }else{
             return -1;
@@ -195,13 +195,58 @@ public class Date {
      * @return the number of days in the month
      */
     public static int getDaysInMonth(String month, int year){
-        if ("February".equalsIgnoreCase(month)){
+        switch(getMonthNumber(month)){
+            case 1:{
+                return 31;
+            }
+            case 2:{
+                if (isLeapYear(year)){
+                    return 29;
+                }else{
+                    return 28;
+                }
+            }
+            case 3:{
+                return 31;
+            }
+            case 4:{
+                return 30;
+            }
+            case 5:{
+                return 31;
+            }
+            case 6:{
+                return 30;
+            }
+            case 7:{
+                return 31;
+            }
+            case 8:{
+                return 31;
+            }
+            case 9:{
+                return 30;
+            }
+            case 10:{
+                return 31;
+            }
+            case 11:{
+                return 30;
+            }
+            case 12:{
+                return 31;
+            }
+
+        }
+
+        /*if ("February".equalsIgnoreCase(month)){
             if (isLeapYear(year)){
                 return 29;
             }else{
                 return 28;
             }
         }
+
         if (month == "January"){
             return 31;
         }if (month == "March"){
@@ -225,6 +270,7 @@ public class Date {
         }if (month == "December"){
             return 31;
         }
+        */
 
         return -1;
     }
@@ -318,8 +364,8 @@ public class Date {
      * @return the day of the week that the date falls on
      */
     public static int dayOfWeek(String month, int dayOfMonth, int year){
-        int monthNum = getMonthNumber(month);
-        return dayOfWeek(monthNum, dayOfMonth, year);
+        //int monthNum = getMonthNumber(month);
+        return dayOfWeek(getMonthNumber(month), dayOfMonth, year);
 
 
         /*double dayOfTheWeekOnJanFirst = (year + Math.floor( (year-1)/4 ) - Math.floor( (year-1)/100 ) + Math.floor( (year-1)/400 ) )%7;
